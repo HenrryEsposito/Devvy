@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>devvy | Sua plataforma de estudos online</title>
+    
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/header.css">
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+    <link rel="stylesheet" href="/styles/partials/page-study.css">
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+
+</head>
+
+
+<body id="page-study">
+    <div id="container">
+        <header class="page-header">
+            <div class="top-bar-container">
+                <a href="/">
+                    <img src="/images/icons/back.svg" alt="Voltar">
+                </a>
+                <img src="/images/logo.png" alt="Logo">
+            </div>
+
+            <div class="header-content">
+                <strong>Esses são os Devvys disponíveis</strong>
+
+
+                <form id="search-teachers">
+                    <div class="select-block">
+                        <label for="subject">Skills</label>
+                        <select name="subject" id="subject">
+                            <option value="" disabled="" hidden="">Selecione uma opção</option>
+
+                            {%for subject in subjects %}
+                                <option value="{{loop.index}}" {{ "selected" if filters.subject == loop.index }} >
+                                    {{subject}}
+                                </option>
+                            {%endfor%}
+
+                        </select>
+                    </div>
+                    <div class="select-block">
+                        <label for="weekday">Nível</label>
+                        <select name="weekday" id="weekday">
+                            <option value="" disabled="" hidden="">Selecione uma opção</option>
+                            
+                            {%for weekday in weekdays %}
+                                <option value="{{loop.index0}}" {{ "selected" if filters.weekday == loop.index0 }} >
+                                    {{weekday}}
+                                </option>
+                            {%endfor%}
+
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="time">Faixa de Preço</label>
+                        <input name="time" id="time" type="number" value="{{filters.time}}" >
+                    </div>
+                    <button type="submit">Filtrar</button>
+                </form>
+
+
+                
+            </div>
+        </header>
+
+        <main>
+            {% if devvys == "" %}
+                <p class="no-results">Nenhum professor encontrado com a sua pesquisa.</p>
+
+            {% else %}
+
+                {% for devvy in devvys %}
+
+                <article class="teacher-item">
+                    <header>
+                        <img 
+                            src="{{devvy.avatar}}"
+                            alt="{{devvy.name}}">
+                        <div>
+                            <strong>{{devvy.name}}</strong>
+                            <span>{{devvy.subject}}</span>
+                        </div>
+                    </header>
+                
+                    <p>{{devvy.bio}}</p>
+                
+                    <footer>
+                        <p>Preço/hora<strong>R$ {{devvy.cost}}</strong>
+                        </p>
+                        <a href="http://api.whatsapp.com/send?1=pt_BR&phone=55{{devvy.whatsapp}}&text=Tenho interesse na sua aula de {{devvy.subject}} {{devvy.name}}" class="button" target="_blank">
+                        <img src="/images/icons/whatsapp.svg" alt="WhatsApp">
+                        Entrar em contato
+                        </a>
+                    </footer>
+                </article>
+
+                {% endfor %}
+            
+            {% endif %}
+
+                <article class="vip-teacher-item">
+                    <header>
+                        <div class ="teacher-img">
+                            <img class ="img-profile"
+                            src="https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.0-9/p960x960/117167323_3244661818903630_8692517199587594404_o.jpg?_nc_cat=111&_nc_sid=85a577&_nc_ohc=rJnM1QX29QAAX8wc-us&_nc_ht=scontent.fcpq2-1.fna&_nc_tp=6&oh=7211b219d06c29c7e1784ead170bf69e&oe=5F56BCD0"
+                            alt="Henrry Esposito">
+
+                            <div class="teacher-title">
+                                <strong>Henrry Esposito</strong>
+                                <span>BackEnd | Avançado</span>
+                            </div>
+                        </div>
+                        <img class="vip-icon" src="https://www.iconpacks.net/icons/1/free-icon-certificate-1356.png" alt="Vip">
+                    </header>
+
+
+
+
+
+
+
+
+
+
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto sunt repudiandae consequuntur maxime eos aspernatur eligendi incidunt, dolores, vero excepturi autem labore assumenda voluptate! Deserunt ipsa amet iste cumque repudiandae!</p>
+                    <footer>
+                        <p>Preço/hora<strong>R$ {{devvy.cost}}</strong>
+                        </p>
+                        <a href="http://api.whatsapp.com/send?1=pt_BR&phone=55{{devvy.whatsapp}}&text=Tenho interesse na sua aula de {{devvy.subject}} {{devvy.name}}" class="button" target="_blank">
+                        <img src="/images/icons/whatsapp.svg" alt="WhatsApp">
+                        Entrar em contato
+                        </a>
+                    </footer>
+                </article>
+
+                <article class="teacher-item">
+                    <header>
+                        <div class ="teacher-img">
+                            <img class ="img-profile"
+                            src="https://scontent.fcpq2-1.fna.fbcdn.net/v/t1.0-9/p960x960/117167323_3244661818903630_8692517199587594404_o.jpg?_nc_cat=111&_nc_sid=85a577&_nc_ohc=rJnM1QX29QAAX8wc-us&_nc_ht=scontent.fcpq2-1.fna&_nc_tp=6&oh=7211b219d06c29c7e1784ead170bf69e&oe=5F56BCD0"
+                            alt="Henrry Esposito">
+
+                            <div class="teacher-title">
+                                <strong>Henrry Esposito</strong>
+                                <span>BackEnd | Avançado</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit asperiores vero laboriosam, ex ipsa sed minima, aperiam nisi quasi corporis consectetur! Eligendi saepe sint nobis, soluta quia unde natus. Harum.</p>
+                    <footer>
+                        <p>Preço/hora<strong>R$ {{devvy.cost}}</strong>
+                        </p>
+                        <a href="http://api.whatsapp.com/send?1=pt_BR&phone=55{{devvy.whatsapp}}&text=Tenho interesse na sua aula de {{devvy.subject}} {{devvy.name}}" class="button" target="_blank">
+                        <img src="/images/icons/whatsapp.svg" alt="WhatsApp">
+                        Entrar em contato
+                        </a>
+                    </footer>
+                </article>
+        </main>
+    </div>
+
+    
+</body>
+</html>
